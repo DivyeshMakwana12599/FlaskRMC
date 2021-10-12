@@ -121,7 +121,7 @@ class MuncipalCorprationPutPostDel(Resource):
         args = data_put_args.parse_args()
         for Value in args:
             data[City][Area][Pipe][Value] = args[Value]
-        json.dump(data, open("data.json", "w"), indent=4)
+        json.dump(data, open("data.json", "w"))
         checkStatus()
         return {City + " " + Area + " " + Pipe: data[City][Area][Pipe]}, 201
 
@@ -134,13 +134,13 @@ class MuncipalCorprationPutPostDel(Resource):
             data[City][Area] = {Pipe: args}
         elif not (Pipe in data[City][Area]):
             data[City][Area][Pipe] = args
-        json.dump(data, open("data.json", "w"), indent=4)
+        json.dump(data, open("data.json", "w"))
         checkStatus()
         return {City + " " + Area + " " + Pipe: data[City][Area][Pipe]}, 201
     def delete(self, City, Area, Pipe):
         if Pipe in data[City][Area]:
             del data[City][Area][Pipe]
-        json.dump(data, open('data.json', 'w'), indent=4)
+        json.dump(data, open('data.json', 'w'))
         checkStatus()
         return City + " " + Area + " " + Pipe + " Deleted", 200
 
