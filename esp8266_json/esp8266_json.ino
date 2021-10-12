@@ -63,7 +63,7 @@ void getRequestPipe(String s){
 String createJsonString(){
     float temp = dht.getTemperature();
     DynamicJsonDocument root(200);
-    root["Temprature"] = temp;
+    root["Temperature"] = temp;
     String s;
     serializeJson(root, s);  
     return s;
