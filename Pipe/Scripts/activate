@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Divyesh\Desktop\ESP8266 http\esp8266_json\FlaskRMC\Pipe"
+VIRTUAL_ENV="C:\Users\Divyesh\Desktop\FlaskRMC\Pipe"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
