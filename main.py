@@ -13,13 +13,13 @@ data_post_args = reqparse.RequestParser()
 
 # args for put method
 data_put_args.add_argument(
-    "PH Value", type=float, help="Send the PH value from the Sensor", required=True
+    "PH Value", type=float, help="Send the PH value from the Sensor", required=False
 )
 data_put_args.add_argument(
-    "ORPmeterVlaue",
+    "ORPmeterValue",
     type=float,
     help="Send the ORP meter value from the Sensor",
-    required=True,
+    required=False,
 )
 data_put_args.add_argument(
     "Temprature",
@@ -31,24 +31,24 @@ data_put_args.add_argument(
     "Turbidity",
     type=float,
     help="Send the Turbidity value from the Sensor",
-    required=True,
+    required=False,
 )
 data_put_args.add_argument(
     "Conductivity",
     type=float,
     help="Send the Conductivity from the Sensor",
-    required=True,
+    required=False,
 )
 
 # args for post method
 data_post_args.add_argument(
-    "PH Value", type=float, help="Send the PH value from the Sensor", required=True
+    "PH Value", type=float, help="Send the PH value from the Sensor", required=False
 )
 data_post_args.add_argument(
-    "ORPmeterVlaue",
+    "ORPmeterValue",
     type=float,
     help="Send the ORP meter value from the Sensor",
-    required=True,
+    required=False,
 )
 data_post_args.add_argument(
     "Temprature",
@@ -60,13 +60,13 @@ data_post_args.add_argument(
     "Turbidity",
     type=float,
     help="Send the Turbidity value from the Sensor",
-    required=True,
+    required=False,
 )
 data_post_args.add_argument(
     "Conductivity",
     type=float,
     help="Send the Conductivity from the Sensor",
-    required=True,
+    required=False,
 )
 
 
