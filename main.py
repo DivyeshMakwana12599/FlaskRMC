@@ -76,38 +76,38 @@ def checkStatus():
     for city in data:
         for area in data[city]:
             for pipe in data[city][area]:
-                if ("PH Value" in data[city][area][pipe]):
+                if "PH Value" in data[city][area][pipe]:
                     if (
-                    data[city][area][pipe]["PH Value"] < 6
-                    or data[city][area][pipe]["PH Value"] > 8
+                        data[city][area][pipe]["PH Value"] < 6
+                        or data[city][area][pipe]["PH Value"] > 8
                     ):
                         data_status[city][area][pipe] = False
                         return
-                if ("ORPmeterValue" in data[city][area][pipe]):
+                if "ORPmeterValue" in data[city][area][pipe]:
                     if (
-                    data[city][area][pipe]["ORPmeterValue"] < 80
-                    or data[city][area][pipe]["ORPmeterValue"] > 100
+                        data[city][area][pipe]["ORPmeterValue"] < 80
+                        or data[city][area][pipe]["ORPmeterValue"] > 100
                     ):
                         data_status[city][area][pipe] = False
                         return
-                if ("Temperature" in data[city][area][pipe]):
+                if "Temperature" in data[city][area][pipe]:
                     if (
-                    data[city][area][pipe]["Temperature"] < 30
-                    or data[city][area][pipe]["Temperature"] > 40
+                        data[city][area][pipe]["Temperature"] < 30
+                        or data[city][area][pipe]["Temperature"] > 40
                     ):
                         data_status[city][area][pipe] = False
                         return
-                if ("Turbidity" in data[city][area][pipe]):
+                if "Turbidity" in data[city][area][pipe]:
                     if (
-                    data[city][area][pipe]["Turbidity"] < 0.14
-                    or data[city][area][pipe]["Turbidity"] > 0.20
+                        data[city][area][pipe]["Turbidity"] < 0.14
+                        or data[city][area][pipe]["Turbidity"] > 0.20
                     ):
                         data_status[city][area][pipe] = False
                         return
-                if ("Conductivity" in data[city][area][pipe]):
+                if "Conductivity" in data[city][area][pipe]:
                     if (
-                    data[city][area][pipe]["Conductivity"] < 200
-                    or data[city][area][pipe]["Conductivity"] > 260
+                        data[city][area][pipe]["Conductivity"] < 200
+                        or data[city][area][pipe]["Conductivity"] > 260
                     ):
                         data_status[city][area][pipe] = False
                         return
@@ -149,14 +149,16 @@ class MuncipalCorprationPutPostDel(Resource):
         checkStatus()
         data = json.load(open("data.json"))
         return {City + " " + Area + " " + Pipe: data[City][Area][Pipe]}, 201
+
     def delete(self, City, Area, Pipe):
         global data
         if Pipe in data[City][Area]:
             del data[City][Area][Pipe]
-        json.dump(data, open('data.json', 'w'))
+        json.dump(data, open("data.json", "w"))
         checkStatus()
         data = json.load(open("data.json"))
         return City + " " + Area + " " + Pipe + " Deleted", 200
+
 
 api.add_resource(MuncipalCorprationGet, "/<string:City>/<string:Area>")
 api.add_resource(

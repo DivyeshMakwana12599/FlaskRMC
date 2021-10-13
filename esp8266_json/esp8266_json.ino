@@ -12,10 +12,11 @@
 
 DHTesp dht;
 
-const String url = "http://792f-8-17-206-80.ngrok.io";
-const char* ssid = "ASUS_ROG";
-const char* pass = "16013010";
+const String url = "http://70d5-8-17-206-80.ngrok.io";
+const char* ssid = "Free";
+const char* pass = "23457890";
 
+const String modulePath = "/Umbergaon/NewGIDC/DivyeshHouse";
 
 void SetupPipeController(){
   Serial.begin(115200);
@@ -60,6 +61,40 @@ void getRequestPipe(String s){
 }
 
 
+void postRequestPipe(Striing s){
+  WiFiClient wifi;
+  HTTPClient http;    
+  String path = url + s;
+  http.begin(wifi, path);
+  http.addHeader("Content-Type", "application/json");
+  int statusCode = http.POST(createJsonString());
+  Serial.print("HTTP Response code: ");
+  Serial.println(statusCode);
+  const String& payload = http.getString();
+  Serial.println("received payload:\n<<");
+  Serial.println(payload);
+  Serial.println(">>");
+  http.end();
+}
+
+
+void putRequestPipe(Striing s){
+  WiFiClient wifi;
+  HTTPClient http;    
+  String path = url + s;
+  http.begin(wifi, path);
+  http.addHeader("Content-Type", "application/json");
+  int statusCode = http.PUT(createJsonString());
+  Serial.print("HTTP Response code: ");
+  Serial.println(statusCode);
+  const String& payload = http.getString();
+  Serial.println("received payload:\n<<");
+  Serial.println(payload);
+  Serial.println(">>");
+  http.end();
+}
+
+
 String createJsonString(){
     float temp = dht.getTemperature();
     DynamicJsonDocument root(200);
@@ -80,15 +115,12 @@ void setup() {
 
 
 void loop() {
-  if(Serial.read() == 'p'){
-    WiFiClient wifi;
-    HTTPClient http;
-    http.addHeader("Content-Type", "application/json");
-    String path = url + "/Umbergaon/NewGIDC/DivyeshHouse";
-    http.begin(wifi, path);
-    int statusCode = http.POST(createJsonString());
-    Serial.print("HTTP Response code: ");
-    Serial.println(statusCode);
-    http.end();
+  bool flag = 0;
+  while(1){
+    if(!flag)
+      postRequestPipe(modulePath);
+    else{
+      putRequestPipe(modulePath);
+    }
   }
 }
